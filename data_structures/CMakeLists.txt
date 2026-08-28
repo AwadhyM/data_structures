@@ -1,2 +1,1 @@
-# Register each implementation here as it is added.
-# Example: add_subdirectory(<implementation_name>)
+add_subdirectory(binary_search_tree)

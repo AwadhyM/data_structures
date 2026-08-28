@@ -14,9 +14,12 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 option(DATA_STRUCTURES_BUILD_TESTS "Build the test suite" ON)
 
+if(DATA_STRUCTURES_BUILD_TESTS)
+    include(CTest)
+endif()
+
 add_subdirectory(data_structures)
 
 if(DATA_STRUCTURES_BUILD_TESTS)
-    include(CTest)
     add_subdirectory(tests)
 endif()
