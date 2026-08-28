@@ -16,6 +16,16 @@ option(DATA_STRUCTURES_BUILD_TESTS "Build the test suite" ON)
 
 if(DATA_STRUCTURES_BUILD_TESTS)
     include(CTest)
+    include(FetchContent)
+
+    set(BUILD_GMOCK OFF CACHE BOOL "Build GoogleMock" FORCE)
+    set(INSTALL_GTEST OFF CACHE BOOL "Install GoogleTest" FORCE)
+
+    FetchContent_Declare(
+        googletest
+        URL https://github.com/google/googletest/archive/refs/tags/v1.17.0.zip
+    )
+    FetchContent_MakeAvailable(googletest)
 endif()
 
 add_subdirectory(data_structures)

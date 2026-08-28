@@ -1,5 +1,6 @@
 add_executable(binary_search_tree_tests binary_search_tree_tests.cpp)
 
-target_link_libraries(binary_search_tree_tests PRIVATE binary_search_tree)
+target_link_libraries(binary_search_tree_tests PRIVATE binary_search_tree GTest::gtest_main)
 
-add_test(NAME binary_search_tree_tests COMMAND binary_search_tree_tests)
+include(GoogleTest)
+gtest_discover_tests(binary_search_tree_tests)
