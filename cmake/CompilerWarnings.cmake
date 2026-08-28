@@ -1,0 +1,7 @@
+function(ds_enable_warnings target)
+    if(MSVC)
+        target_compile_options(${target} INTERFACE /W4 /permissive-)
+    else()
+        target_compile_options(${target} INTERFACE -Wall -Wextra -Wpedantic)
+    endif()
+endfunction()
