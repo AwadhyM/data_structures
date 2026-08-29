@@ -1,4 +1,7 @@
 #include <gtest/gtest.h>
+
+#include <vector>
+
 #include "binary_search_tree.hpp"
 
 TEST(BinarySearchTreeTest, SuccessfullyAddToEmptyBinarySearchTree) {
@@ -66,4 +69,32 @@ TEST(BinarySearchTreeTest, SuccessfullyCountBothSides) {
     bst.insert(50);
     bst.insert(45);
     EXPECT_EQ(bst.size(), 6);
+}
+
+TEST(BinarySearchTreeTest, ReturnEmptyVectorForInOrderOfEmptyTree) {
+    auto bst = ds::BinarySearchTree<int>();
+    const std::vector<int> expected{};
+    EXPECT_EQ(bst.inOrder(), expected);
+}
+
+TEST(BinarySearchTreeTest, ReturnInOrder) {
+    auto bst = ds::BinarySearchTree<int>();
+    const std::vector<int> expected{36, 42, 50};
+    bst.insert(42);
+    bst.insert(36);
+    bst.insert(50);
+    EXPECT_EQ(bst.inOrder(), expected);
+}
+
+TEST(BinarySearchTreeTest, ReturnElementsInOrder) {
+    auto bst = ds::BinarySearchTree<int>();
+    bst.insert(42);
+    bst.insert(36);
+    bst.insert(50);
+    bst.insert(30);
+    bst.insert(40);
+    bst.insert(50);
+    bst.insert(60);
+    const std::vector<int> expected{30, 36, 40, 42, 50, 60};
+    EXPECT_EQ(bst.inOrder(), expected);
 }

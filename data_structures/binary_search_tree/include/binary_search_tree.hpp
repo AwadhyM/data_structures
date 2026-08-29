@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstdint>
 #include <cstddef>
 #include <functional>
 #include <memory>
@@ -28,7 +29,23 @@ template <typename T> class BinarySearchTree {
 
     uint32_t size() { return count(root); }
 
+    std::vector<T> inOrder() { return inOrder(root); }
+
   private:
+    static std::vector<T> inOrder(node *tree) {
+        if (tree == nullptr) {
+            return {};
+        }
+
+        auto values = inOrder(tree->leftChild);
+        values.push_back(tree->value);
+
+        auto right_values = inOrder(tree->rightChild);
+        values.insert(values.end(), right_values.begin(), right_values.end());
+
+        return values;
+    }
+
     static uint32_t count(node *tree) {
         if (tree == nullptr) {
             return 0;
