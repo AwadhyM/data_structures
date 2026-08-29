@@ -30,6 +30,7 @@ template <typename T> class BinarySearchTree {
     uint32_t size() { return count(root); }
 
     std::vector<T> inOrder() { return inOrder(root); }
+    std::vector<T> preOrder() { return preOrder(root); }
 
   private:
     static std::vector<T> inOrder(node *tree) {
@@ -41,6 +42,24 @@ template <typename T> class BinarySearchTree {
         values.push_back(tree->value);
 
         auto right_values = inOrder(tree->rightChild);
+        values.insert(values.end(), right_values.begin(), right_values.end());
+
+        return values;
+    }
+
+    static std::vector<T> preOrder(node *tree) {
+        if (tree == nullptr) {
+            return {};
+        }
+
+        std::vector<T> values;
+
+        values.push_back(tree->value);
+
+        auto left_values = preOrder(tree->leftChild);
+        values.insert(values.end(), left_values.begin(), left_values.end());
+
+        auto right_values = preOrder(tree->rightChild);
         values.insert(values.end(), right_values.begin(), right_values.end());
 
         return values;
