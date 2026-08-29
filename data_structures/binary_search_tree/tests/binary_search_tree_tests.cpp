@@ -113,3 +113,20 @@ TEST(BinarySearchTreeTest, ReturnInPreOrder) {
     bst.insert(50);
     EXPECT_EQ(bst.preOrder(), expected);
 }
+
+TEST(BinarySearchTreeTest, ReturnEmptyVectorForPostOrderOfEmptyTree) {
+    auto bst = ds::BinarySearchTree<int>();
+    const std::vector<int> expected{};
+    EXPECT_EQ(bst.postOrder(), expected);
+}
+
+TEST(BinarySearchTreeTest, PostOrderTraversalReturnsExpectedValues) {
+    auto bst = ds::BinarySearchTree<int>();
+
+    bst.insert(42);
+    bst.insert(36);
+    bst.insert(50);
+    bst.insert(40);
+
+    EXPECT_EQ(bst.postOrder(), std::vector<int>({40, 36, 50, 42}));
+}
