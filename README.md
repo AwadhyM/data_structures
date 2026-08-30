@@ -17,12 +17,11 @@ Each implementation is to be added within its own CMake project.
 
 ```
 data_structures/
-tests/                 # Cross-component and regression tests
 cmake/                 # Shared CMake helpers
 ```
 
 The `data_structures/` directory is the parent CMake project for individual
-implementations. It starts empty by design.
+implementations.
 
 ## Prerequisites
 

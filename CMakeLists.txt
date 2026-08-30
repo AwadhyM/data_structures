@@ -30,6 +30,3 @@ endif()
 
 add_subdirectory(data_structures)
 
-if(DATA_STRUCTURES_BUILD_TESTS)
-    add_subdirectory(tests)
-endif()
