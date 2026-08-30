@@ -21,6 +21,11 @@ template <typename T> class BinarySearchTree {
   public:
     BinarySearchTree() = default;
 
+    BinarySearchTree(const BinarySearchTree &) = delete;
+    BinarySearchTree &operator=(const BinarySearchTree &) = delete;
+    BinarySearchTree(BinarySearchTree &&) = delete;
+    BinarySearchTree &operator=(BinarySearchTree &&) = delete;
+
     bool insert(T val) { return insert(val, root); }
 
     bool empty() { return root == nullptr; }
