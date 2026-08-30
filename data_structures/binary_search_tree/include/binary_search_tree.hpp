@@ -33,7 +33,18 @@ template <typename T> class BinarySearchTree {
     std::vector<T> preOrder() { return preOrder(root); }
     std::vector<T> postOrder() { return postOrder(root); }
 
+    ~BinarySearchTree() { destroy(root); }
+
   private:
+    static void destroy(node *tree) {
+        if (tree == nullptr) {
+            return;
+        }
+        destroy(tree->leftChild);
+        destroy(tree->rightChild);
+        delete tree;
+    }
+
     static std::vector<T> inOrder(node *tree) {
         if (tree == nullptr) {
             return {};
