@@ -130,3 +130,40 @@ TEST(BinarySearchTreeTest, PostOrderTraversalReturnsExpectedValues) {
 
     EXPECT_EQ(bst.postOrder(), std::vector<int>({40, 36, 50, 42}));
 }
+
+TEST(BinarySearchTreeTest, RemoveNodeWithNoChild) {
+    auto bst = ds::BinarySearchTree<int>();
+    bst.insert(42);
+    bst.insert(36);
+    bst.remove(36);
+    EXPECT_EQ(bst.contains(36), false);
+}
+
+TEST(BinarySearchTreeTest, RemoveNodeWithSingleChild) {
+    auto bst = ds::BinarySearchTree<int>();
+    bst.insert(42);
+    bst.insert(36);
+    bst.remove(42);
+    EXPECT_EQ(bst.contains(42), false);
+    EXPECT_EQ(bst.contains(36), true);
+
+    auto bst_two = ds::BinarySearchTree<int>();
+    bst_two.insert(42);
+    bst_two.insert(56);
+    bst_two.remove(42);
+    EXPECT_EQ(bst_two.contains(42), false);
+    EXPECT_EQ(bst_two.contains(56), true);
+}
+
+TEST(BinarySearchTreeTest, RemoveNodeWithTwoChildren) {
+    auto bst = ds::BinarySearchTree<int>();
+    bst.insert(42);
+    bst.insert(36);
+    bst.insert(50);
+    bst.insert(45);
+
+    bst.remove(42);
+
+    EXPECT_FALSE(bst.contains(42));
+    EXPECT_EQ(bst.inOrder(), std::vector<int>({36, 45, 50}));
+}

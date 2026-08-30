@@ -33,9 +33,49 @@ template <typename T> class BinarySearchTree {
     std::vector<T> preOrder() { return preOrder(root); }
     std::vector<T> postOrder() { return postOrder(root); }
 
+    void remove(T val) { remove(val, root); }
+
     ~BinarySearchTree() { destroy(root); }
 
   private:
+    static void remove(const T &val, node *&tree) {
+        if (tree == nullptr) {
+            return;
+        }
+
+        if (val < tree->value) {
+            remove(val, tree->leftChild);
+            return;
+        }
+
+        if (tree->value < val) {
+            remove(val, tree->rightChild);
+            return;
+        }
+
+        if (tree->leftChild == nullptr) {
+            node *replacement = tree->rightChild;
+            delete tree;
+            tree = replacement;
+            return;
+        }
+
+        if (tree->rightChild == nullptr) {
+            node *replacement = tree->leftChild;
+            delete tree;
+            tree = replacement;
+            return;
+        }
+
+        node *successor = tree->rightChild;
+        while (successor->leftChild != nullptr) {
+            successor = successor->leftChild;
+        }
+
+        tree->value = successor->value;
+        remove(successor->value, tree->rightChild);
+    }
+
     static void destroy(node *tree) {
         if (tree == nullptr) {
             return;
