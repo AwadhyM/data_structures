@@ -24,7 +24,7 @@ template <typename T> class BinarySearchTree {
     BinarySearchTree(BinarySearchTree &&) = delete;
     BinarySearchTree &operator=(BinarySearchTree &&) = delete;
 
-    bool insert(T val) { return insert(val, root); }
+    bool insert(const T &val) { return insert(val, root); }
 
     bool empty() const { return root == nullptr; }
 
@@ -36,7 +36,7 @@ template <typename T> class BinarySearchTree {
     std::vector<T> preOrder() const { return preOrder(root); }
     std::vector<T> postOrder() const { return postOrder(root); }
 
-    void remove(T val) { remove(val, root); }
+    void remove(const T &val) { remove(val, root); }
 
     ~BinarySearchTree() { destroy(root); }
 
