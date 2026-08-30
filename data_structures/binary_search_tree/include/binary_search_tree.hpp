@@ -26,15 +26,15 @@ template <typename T> class BinarySearchTree {
 
     bool insert(T val) { return insert(val, root); }
 
-    bool empty() { return root == nullptr; }
+    bool empty() const { return root == nullptr; }
 
     bool contains(const T &val) const { return contains(val, root); }
 
-    std::size_t size() { return count(root); }
+    std::size_t size() const { return count(root); }
 
-    std::vector<T> inOrder() { return inOrder(root); }
-    std::vector<T> preOrder() { return preOrder(root); }
-    std::vector<T> postOrder() { return postOrder(root); }
+    std::vector<T> inOrder() const { return inOrder(root); }
+    std::vector<T> preOrder() const { return preOrder(root); }
+    std::vector<T> postOrder() const { return postOrder(root); }
 
     void remove(T val) { remove(val, root); }
 
