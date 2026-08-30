@@ -30,7 +30,7 @@ template <typename T> class BinarySearchTree {
 
     bool contains(const T &val) const { return contains(val, root); }
 
-    uint32_t size() { return count(root); }
+    std::size_t size() { return count(root); }
 
     std::vector<T> inOrder() { return inOrder(root); }
     std::vector<T> preOrder() { return preOrder(root); }
@@ -138,7 +138,7 @@ template <typename T> class BinarySearchTree {
         return values;
     }
 
-    static uint32_t count(node *tree) {
+    static std::size_t count(node *tree) {
         if (tree == nullptr) {
             return 0;
         }
